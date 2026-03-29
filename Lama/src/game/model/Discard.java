@@ -9,6 +9,9 @@ public class Discard {
         this.cards = new ArrayList<>();
     }
 
+
+    /* GETTERS AND SETTERS */
+
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
@@ -17,6 +20,9 @@ public class Discard {
         return this.cards;
     }
 
+
+    /* METHODS */
+    
     public Card getTopCard() {
         if (!this.cards.isEmpty()) {
             return this.cards.get(this.cards.size() - 1);

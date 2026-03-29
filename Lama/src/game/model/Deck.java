@@ -17,6 +17,9 @@ public class Deck {
         }
     }
 
+
+    /* GETTERS AND SETTERS */
+
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
@@ -25,6 +28,9 @@ public class Deck {
         return this.cards;
     }
 
+
+    /* METHODS */
+    
     public boolean isEmpty() {
         return this.cards.isEmpty();
     }

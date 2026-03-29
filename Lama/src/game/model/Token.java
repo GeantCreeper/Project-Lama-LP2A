@@ -7,6 +7,9 @@ public class Token {
         this.value = value;
     }
     
+
+    /* GETTERS AND SETTERS */
+    
     public void setValue(int value) {
         this.value = value;
     }

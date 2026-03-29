@@ -7,6 +7,9 @@ public class Card {
         this.value = value;
     }
 
+
+    /* GETTERS AND SETTERS */
+
     public void setValue(int value) {
         this.value = value;
     }
@@ -15,6 +18,9 @@ public class Card {
         return this.value;
     }
 
+
+    /* METHODS */
+    
     public boolean isLama() {
         return this.value == 7;
     }

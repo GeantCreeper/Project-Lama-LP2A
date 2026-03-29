@@ -2,6 +2,9 @@ package game.model;
 
 public class Round {
     
+    
+    /* METHODS */
+
     public void start() {
 
     }
@@ -10,7 +13,7 @@ public class Round {
 
     }
 
-public void end() {
+    public void end() {
 
     }
 }

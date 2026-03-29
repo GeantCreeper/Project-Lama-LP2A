@@ -7,6 +7,9 @@ public class Player {
     private ArrayList<Token> tokens;
     private ArrayList<Card> hand;
 
+
+    /* GETTERS AND SETTERS */
+
     public Player(String name) {
         this.name = name;
         this.tokens = new ArrayList<>();
@@ -21,20 +24,35 @@ public class Player {
         return this.name;
     }
 
-    public void addToken(ArrayList<Token> tokens) {
-        this.tokens.addAll(tokens);
+    public void setToken(ArrayList<Token> tokens) {
+        this.tokens = tokens;
     }
 
     public ArrayList<Token> getTokens() {
         return this.tokens;
     }
 
-    public void addHand(ArrayList<Card> cards) {
-        this.hand.addAll(cards);
+    public void setHand(ArrayList<Card> hand) {
+        this.hand = hand;
     }
 
     public ArrayList<Card> getHand() {
         return this.hand;
+    }
+
+
+    /* METHODS */
+
+    public void addHand(ArrayList<Card> cards) {
+        if (cards != null) {
+            this.hand.addAll(cards);
+        }
+    }
+
+    public void addToken(ArrayList<Token> tokens) {
+        if (tokens != null) {
+            this.tokens.addAll(tokens);
+        }
     }
 
     public Card playCard(Card card) {

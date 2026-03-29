@@ -7,5 +7,16 @@ public class HumanPlayer extends Player {
         super(name);
         this.age = age;
     }
+
+
+    /* GETTERS AND SETTERS */
+    
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
     
 }
