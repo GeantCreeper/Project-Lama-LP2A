@@ -9,4 +9,22 @@ public class Discard {
         this.cards = new ArrayList<>();
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public ArrayList<Card> getCards() {
+        return this.cards;
+    }
+
+    public Card getTopCard() {
+        if (!this.cards.isEmpty()) {
+            return this.cards.get(this.cards.size() - 1);
+        }
+        return null; // No cards in discard pile
+    }
+
+    public void addCard(Card card) {
+        this.cards.add(card);
+    }
 }

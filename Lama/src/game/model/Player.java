@@ -13,4 +13,56 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void addToken(ArrayList<Token> tokens) {
+        this.tokens.addAll(tokens);
+    }
+
+    public ArrayList<Token> getTokens() {
+        return this.tokens;
+    }
+
+    public void addHand(ArrayList<Card> cards) {
+        this.hand.addAll(cards);
+    }
+
+    public ArrayList<Card> getHand() {
+        return this.hand;
+    }
+
+    public Card playCard(Card card) {
+        if (this.hand.contains(card)) {
+            this.hand.remove(card);
+            return card;
+        }
+        return null; // Card not in hand
+    }
+
+    public Card drawCard(Deck deck) {
+        Card drawnCard = deck.drawCard();
+        if (drawnCard != null) {
+            this.hand.add(drawnCard);
+        }
+        return drawnCard; // Return the drawn card or null if deck is empty
+    }
+
+    public boolean quit() {
+        return true; // placeholder
+    }
+
+    public int calculateScore() { // placeholder
+        int score = 0;
+        for (Card card : this.hand) {
+            score += card.getValue();
+        }
+        return score;
+    }
+
 }
