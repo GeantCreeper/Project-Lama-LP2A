@@ -1,5 +1,3 @@
-# Mention F
-
 <h1 align="center">Mention F</h1>
 
 <p align="center">
