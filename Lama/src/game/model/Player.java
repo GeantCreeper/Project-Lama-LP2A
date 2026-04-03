@@ -9,7 +9,7 @@ public class Player {
 
     /* GETTERS AND SETTERS */
 
-    public Player() {   
+    public Player() {
         this.tokens = new ArrayList<>();
         this.hand = new ArrayList<>();
     }

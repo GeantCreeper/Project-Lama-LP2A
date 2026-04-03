@@ -34,9 +34,6 @@ public class Card {
         if (this.value == topCard.getValue() || this.value == topCard.getValue() + 1) {
             return true; 
         }
-        if (this.isLama() && topCard.getValue() == 6) {
-            return true;
-        }
-        return false;
+        return this.isLama() && topCard.getValue() == 6;
     }
 }

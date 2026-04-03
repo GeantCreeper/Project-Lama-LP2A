@@ -7,8 +7,14 @@ public class Game {
     private Round round;
     private boolean isGameOver;
 
-    public Game(ArrayList<Player> players) {
-        this.players = players;
+    public Game(int nbBots,String name,int age) {
+
+        this.players.add(new HumanPlayer(name,age));
+
+        for (int i=0; i<nbBots; i++){
+            this.players.add(new BotPlayer());
+        }
+
         this.round = new Round();
         this.isGameOver = false;
     }
