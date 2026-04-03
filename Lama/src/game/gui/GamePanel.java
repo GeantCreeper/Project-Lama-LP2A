@@ -6,9 +6,9 @@ public class GamePanel {
     
     static void main(String[] args){
         
-        Game game = new Game(1,"niko",19);
+        Game game = new Game(1,"Nikoslaï",19);
 
-        
+
     }
 }
 
