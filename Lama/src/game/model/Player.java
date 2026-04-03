@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Player {
     private ArrayList<Token> tokens;
     private ArrayList<Card> hand;
+    private boolean dropout;
 
 
     /* GETTERS AND SETTERS */
@@ -28,6 +29,14 @@ public class Player {
 
     public ArrayList<Card> getHand() {
         return this.hand;
+    }
+
+    public void setDropout(boolean dropout) {
+        this.dropout = dropout;
+    }
+
+    public boolean isDropout() {
+        return this.dropout;
     }
 
 
@@ -61,8 +70,8 @@ public class Player {
         return drawnCard; // Return the drawn card or null if deck is empty
     }
 
-    public boolean quit() {
-        return true; // placeholder
+    public void quit() {
+        setDropout(true);
     }
 
     public int calculateScore() { // placeholder

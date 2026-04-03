@@ -7,6 +7,7 @@ public class HumanPlayer extends Player {
     public HumanPlayer(String name, int age) {
         this.name = name;
         this.age = age;
+        super();
     }
 
 

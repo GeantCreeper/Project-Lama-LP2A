@@ -6,7 +6,6 @@ public class Token {
     public Token(int value) {
         this.value = value;
     }
-    
 
     /* GETTERS AND SETTERS */
     
