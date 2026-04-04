@@ -5,9 +5,10 @@ public class HumanPlayer extends Player {
     private int age;
     
     public HumanPlayer(String name, int age) {
+        super();
         this.name = name;
         this.age = age;
-        super();
+        
     }
 
 
