@@ -1,3 +1,3 @@
 @echo off
-java -jar mention-f-1.0.jar
+java -jar target/mention-f-1.0.jar
 pause

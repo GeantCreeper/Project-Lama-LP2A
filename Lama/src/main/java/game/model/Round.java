@@ -46,7 +46,7 @@ public class Round {
         }
     }
 
-    public void nextTurn() {}
+    public void nextTurn() {} // not implemented yet
 
-    public void end() {}
+    public void end() {} // not implemented yet
 }
