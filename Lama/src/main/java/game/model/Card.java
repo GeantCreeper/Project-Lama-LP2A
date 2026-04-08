@@ -1,7 +1,10 @@
 package game.model;
 
+import java.util.ArrayList;
+
 public class Card {
     private int value;
+    private int[] lamas = {7, 8, 9, 10, 11, 12, 13, 14};
 
     public Card(int value) {
         this.value = value;
@@ -22,7 +25,12 @@ public class Card {
     /* METHODS */
     
     public boolean isLama() {
-        return this.value == 7;
+        for (int lama : this.lamas) {
+            if (lama == this.value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean canBePlayedOnTopOf(Card topCard) {
@@ -36,4 +44,41 @@ public class Card {
         }
         return this.isLama() && topCard.getValue() == 6;
     }
+
+    public ArrayList<Card> annalEscapeCard(Player player) {
+        return player.getHand();
+    }
+
+    public void academicComebackCard(Player player, Card card) {
+        player.playCard(card);
+    }
+
+    public void savedAtJuryCard(Player player, Deck deck, Card cardToMove) {
+        if (player.getHand().remove(cardToMove)) {
+            deck.getCards().add(cardToMove);
+        }
+    }
+
+    public void errorMoodleCard(Player player, Player target, Card cardToMove) {
+        if (player.getHand().remove(cardToMove)) {
+            target.getHand().add(cardToMove);
+        }
+    }
+
+    public void secondJuryCard(Player player) {
+        player.quit();
+    }
+
+    public void warningCard(Player nextPlayer, Deck deck) {
+        nextPlayer.drawCard(deck);
+    }
+
+    public void gaussCard(ArrayList<Player> players, Deck deck) {
+        for (Player p : players) {
+            if (!p.isDropout()) {
+                p.drawCard(deck);
+            }
+        }
+    }
+
 }

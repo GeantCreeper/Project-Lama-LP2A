@@ -13,7 +13,7 @@ public class Deck {
             }
         }
         for (int j = 0; j < 8; j++) {
-            this.cards.add(new Card(7)); // Add Lama cards
+            this.cards.add(new Card(7 + j)); // Add Lama cards
         }
     }
 

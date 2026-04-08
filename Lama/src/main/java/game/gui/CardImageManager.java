@@ -8,8 +8,8 @@ import java.util.*;
 public class CardImageManager {
 
     // Valeur 1->6 : 8 variantes chacune (indices 0..48), Lama (index 7) : 8 variantes (indices 49..56)
-    private static final int[] VALUE_START = {0, 0, 8, 16, 24, 32, 40, 48};
-    private static final int[] VALUE_COUNT = {0, 8, 8, 8, 8, 8, 8, 8};
+    private static final int[] VALUE_START = {0, 0, 8, 16, 24, 32, 40, 48, 49, 50, 51, 52, 53, 54, 55};
+    private static final int[] VALUE_COUNT = {0, 8, 8, 8, 8, 8, 8, 1, 1, 1, 1, 1, 1, 1, 1};
 
     // Mapping carte -> index image assigné (stabilité visuelle entre les refresh)
     private final Map<Card, Integer> cardImageIndex = new IdentityHashMap<>();
