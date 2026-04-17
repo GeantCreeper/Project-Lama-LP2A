@@ -74,6 +74,14 @@ public class Player {
         }
     }
 
+    public Card playCard(Card card) {
+        if (this.hand.contains(card)) {
+            this.hand.remove(card);
+            return card;
+        }
+        return null; // Card not in hand
+    }
+
     public Card drawCard(Deck deck) {
         Card drawnCard = deck.drawCard();
         if (drawnCard != null) {

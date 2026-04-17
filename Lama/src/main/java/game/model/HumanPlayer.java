@@ -1,6 +1,6 @@
 package game.model;
 
-public class HumanPlayer extends Player {
+public abstract class HumanPlayer extends Player {
     private int age;
     
     public HumanPlayer(String name, int age) {
@@ -24,11 +24,5 @@ public class HumanPlayer extends Player {
 
     /* METHODS */
 
-        public Card playCard(Card card) {
-        if (getHand().contains(card)) {
-            getHand().remove(card);
-            return card;
-        }
-        return null; // Card not in hand
-    }
+        public abstract Card playCard(Card card);
 }
