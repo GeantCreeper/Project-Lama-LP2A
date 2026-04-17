@@ -21,7 +21,6 @@ public class HumanPlayer extends Player {
     }
     
 
-
     /* METHODS */
 
         public Card playCard(Card card) {

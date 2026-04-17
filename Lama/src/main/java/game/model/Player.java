@@ -2,7 +2,7 @@ package game.model;
 
 import java.util.ArrayList;
 
-public class Player {
+public abstract class Player {
     private String name;
     private ArrayList<Token> tokens;
     private ArrayList<Card> hand;
@@ -73,6 +73,8 @@ public class Player {
             this.tokens.add(token);
         }
     }
+
+    public abstract Card playCard(Card card);
 
     public Card drawCard(Deck deck) {
         Card drawnCard = deck.drawCard();
