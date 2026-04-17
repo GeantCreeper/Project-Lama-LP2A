@@ -2,7 +2,7 @@ package game.model;
 
 import java.util.ArrayList;
 
-public class Player {
+public abstract class Player {
     private String name;
     private ArrayList<Token> tokens;
     private ArrayList<Card> hand;
@@ -74,13 +74,7 @@ public class Player {
         }
     }
 
-    public Card playCard(Card card) {
-        if (this.hand.contains(card)) {
-            this.hand.remove(card);
-            return card;
-        }
-        return null; // Card not in hand
-    }
+    public abstract Card playCard(Card card);
 
     public Card drawCard(Deck deck) {
         Card drawnCard = deck.drawCard();
