@@ -236,8 +236,8 @@ public class BoardPanel {
 
     private void refreshScore() {
         HumanPlayer human = getHuman();
-        int tokens = human.getTokens().stream().mapToInt(Token::getValue).sum();
-        scoreLabel.setText("ECTS : " + tokens + " pts");
+        int score = human.getScore();
+        scoreLabel.setText("ECTS : " + score + " pts");
     }
 
 

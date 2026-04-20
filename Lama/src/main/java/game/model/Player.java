@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Player {
     private String name;
-    private ArrayList<Token> tokens;
+    private int score;
     private ArrayList<Card> hand;
     private boolean dropout;
     private boolean skipTurn;
@@ -14,7 +14,7 @@ public abstract class Player {
 
     public Player(String name) {
         this.name = name;
-        this.tokens = new ArrayList<>();
+        this.score = 0;
         this.hand = new ArrayList<>();
         this.dropout = false;
         this.skipTurn = false;
@@ -27,12 +27,12 @@ public abstract class Player {
         return this.name;
     }
 
-    public void setToken(ArrayList<Token> tokens) {
-        this.tokens = tokens;
+    public void setScore(int score) {
+        this.score = score;
     }
 
-    public ArrayList<Token> getTokens() {
-        return this.tokens;
+    public int getScore() {
+        return this.score;
     }
 
     public void setHand(ArrayList<Card> hand) {
@@ -65,12 +65,6 @@ public abstract class Player {
     public void addHand(ArrayList<Card> cards) {
         if (cards != null) {
             this.hand.addAll(cards);
-        }
-    }
-
-    public void addToken(Token token) {
-        if (token != null) {
-            this.tokens.add(token);
         }
     }
 
