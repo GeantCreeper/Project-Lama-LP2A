@@ -1,12 +1,26 @@
 package game.gui;
 
 import game.controller.GameController;
-import game.model.*;
-import javafx.geometry.*;
-import javafx.scene.control.*;
-import javafx.scene.image.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.*;
+import game.model.BotPlayer;
+import game.model.Card;
+import game.model.HumanPlayer;
+import game.model.Player;
+import game.model.Token;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 public class BoardPanel {
 
@@ -64,29 +78,39 @@ public class BoardPanel {
         deckLabel = new Label();
         deckLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         deckLabel.setAlignment(Pos.CENTER);
-        deckLabel.setMinSize(250, 350);
+        deckLabel.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         deckLabel.setStyle(cardStyle("#2980b9", "white"));
 
         topCardImageView = new ImageView();
-        topCardImageView.setFitWidth(250);
-        topCardImageView.setFitHeight(350);
         topCardImageView.setPreserveRatio(true);
         topCardImageView.setSmooth(true);
 
         StackPane discardPane = new StackPane(topCardImageView);
-        discardPane.setMinSize(250, 350);
+        discardPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        discardPane.setPrefHeight(200);
+        discardPane.setPrefWidth(500);
         discardPane.setStyle(cardStyle("#e74c3c", "white"));
 
         VBox deckBox = new VBox(5, new Label("Pioche"), deckLabel);
         deckBox.setAlignment(Pos.CENTER);
+        deckBox.setPrefWidth(200);
+        deckBox.setMaxHeight(Double.MAX_VALUE);
+        VBox.setVgrow(deckLabel, Priority.ALWAYS);
         ((Label) deckBox.getChildren().get(0)).setStyle("-fx-text-fill: #7f8c8d;");
 
         VBox discardBox = new VBox(5, new Label("Défausse"), discardPane);
         discardBox.setAlignment(Pos.CENTER);
+        discardBox.setPrefWidth(200);
+        VBox.setVgrow(discardPane, Priority.ALWAYS);
         ((Label) discardBox.getChildren().get(0)).setStyle("-fx-text-fill: #7f8c8d;");
 
         HBox pileBox = new HBox(30, deckBox, discardBox);
         pileBox.setAlignment(Pos.CENTER);
+        HBox.setHgrow(deckBox, Priority.ALWAYS);
+        HBox.setHgrow(discardBox, Priority.ALWAYS);
+
+        topCardImageView.fitWidthProperty().bind(discardPane.widthProperty().multiply(0.9));
+        topCardImageView.fitHeightProperty().bind(discardPane.heightProperty().multiply(0.9));
 
         /* Message d'info */
         messageLabel = new Label("À votre tour !");
@@ -121,13 +145,21 @@ public class BoardPanel {
         humanCardsBox = new HBox(15);
         humanCardsBox.setAlignment(Pos.CENTER_LEFT);
         humanCardsBox.setPadding(new Insets(10));
+        humanCardsBox.setMaxHeight(Double.MAX_VALUE);
+        humanCardsBox.setPrefHeight(250);  // Set preferred height to allow growing back
+        HBox.setHgrow(discardPane, Priority.ALWAYS);
 
         ScrollPane scrollHand = new ScrollPane(humanCardsBox);
         scrollHand.setFitToHeight(true);
+        scrollHand.setFitToWidth(true);
         scrollHand.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollHand.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollHand.setStyle("-fx-background-color: transparent; -fx-background: #ecf0f1;");
-        scrollHand.setMinHeight(340);
+        //scrollHand.setMinHeight(340);   // supprimer la hauteur fixe
+        humanCardsBox.prefWidthProperty().bind(scrollHand.widthProperty());
+
+        // Removed the listener that was preventing the UI from growing back
+        VBox.setVgrow(scrollHand, Priority.ALWAYS);
 
         VBox handBox = new VBox(8, handTitle, scrollHand);
         handBox.setAlignment(Pos.CENTER);
@@ -196,13 +228,15 @@ public class BoardPanel {
             Image img = imageManager.loadImageByIndex(idx);
 
             ImageView iv = new ImageView(img);
-            iv.setFitWidth(250);
-            iv.setFitHeight(350);
-            iv.setPreserveRatio(true);
             iv.setSmooth(true);
+            iv.fitHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.9));
+            iv.fitWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.65));
 
             Button cardBtn = new Button("", iv);
-            cardBtn.setMinSize(250, 350);
+            cardBtn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            cardBtn.setMinSize(150, 0);
+            cardBtn.prefHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.9));
+            cardBtn.prefWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.65));
             cardBtn.setPadding(Insets.EMPTY);
 
             boolean playable = top != null && card.canBePlayedOnTopOf(top);
