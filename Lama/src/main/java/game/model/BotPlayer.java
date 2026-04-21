@@ -20,7 +20,7 @@ public class BotPlayer extends Player {
             return null;
         }
 
-        if (getScore() >= 25 && random.nextInt(100) < 15) {
+        if (getRoundScore() >= 25 && random.nextInt(100) < 15) {
             quit();
             return null;
         }
@@ -47,5 +47,9 @@ public class BotPlayer extends Player {
         
         return null; // Aucune carte jouable
     }   
+
+    public static void resetBotCount() {
+        bot_count = 1;
+    }
 
 }

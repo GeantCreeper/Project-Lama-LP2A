@@ -45,8 +45,4 @@ public class Round {
             this.discard.addCard(firstCard);
         }
     }
-
-    public void nextTurn() {} // not implemented yet
-
-    public void end() {} // not implemented yet
 }
