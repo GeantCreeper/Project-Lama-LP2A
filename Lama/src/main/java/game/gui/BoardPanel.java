@@ -5,7 +5,6 @@ import game.model.BotPlayer;
 import game.model.Card;
 import game.model.HumanPlayer;
 import game.model.Player;
-import game.model.Token;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -260,7 +259,7 @@ public class BoardPanel {
         int i = 1;
         for (Player p : controller.getGame().getPlayers()) {
             if (p instanceof BotPlayer bot) {
-                String status = bot.isDropout() ? "Abandonné" : bot.getHand().size() + " cartes";
+                String status = bot.isDropout() ? "Abandonné" : bot.getHand().size() + " cartes" +" (" + bot.getScore() + " ects)";
                 Label botLabel = new Label("Bot " + i + " : " + status);
                 botLabel.setStyle("-fx-text-fill: " + (bot.isDropout() ? "#e74c3c" : "#ecf0f1") + ";");
                 botLabel.setFont(Font.font("Arial", 13));
