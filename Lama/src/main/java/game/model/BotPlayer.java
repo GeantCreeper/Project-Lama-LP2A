@@ -20,7 +20,7 @@ public class BotPlayer extends Player {
             return null;
         }
 
-        if (getRoundScore() >= 25 && random.nextInt(100) < 15) {
+        if (getRoundScore() >= 15 && random.nextInt(100) < 15) {
             quit();
             return null;
         }
