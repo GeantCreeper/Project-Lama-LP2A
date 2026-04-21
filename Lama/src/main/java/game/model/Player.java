@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class Player {
     private String name;
     private int score;
+    private int roundScore;
     private ArrayList<Card> hand;
     private boolean dropout;
     private boolean skipTurn;
@@ -33,6 +34,14 @@ public abstract class Player {
 
     public int getScore() {
         return this.score;
+    }
+
+    public void setRoundScore(int roundScore) { 
+        this.roundScore = roundScore; 
+    }
+    
+    public int getRoundScore() { 
+        return roundScore; 
     }
 
     public void setHand(ArrayList<Card> hand) {
@@ -71,7 +80,14 @@ public abstract class Player {
     public void addPoints(int points) {
         this.score += points;
     }
-
+    
+    public void addRoundPoints(int points) { 
+        roundScore += points; 
+    }
+    public void resetRoundScore() { 
+        roundScore = 0; 
+    }
+    
     public abstract Card playCard(Card card);
 
     public Card drawCard(Deck deck) {
@@ -86,14 +102,24 @@ public abstract class Player {
         setDropout(true);
     }
 
-    public int calculateScore() { // placeholder
+    public int calculateScore() {
+        java.util.Set<Integer> seenValues = new java.util.HashSet<>();
+        int score = 0;
+        int lamaCount = 0;
+
         for (Card card : this.hand) {
             if (card.isLama()) {
-                score += 0;
+                lamaCount++;
+            } else if (seenValues.add(card.getValue()) == true) {
+                // add() retourne true si la valeur n'était pas déjà présente
+                score += card.getValue();
             }
-            score += card.getValue();
         }
+
+        if (!isDropout()) {
+            score -= lamaCount * 10;
+        }
+
         return score;
     }
-
 }

@@ -20,6 +20,11 @@ public class BotPlayer extends Player {
             return null;
         }
 
+        if (getScore() >= 25 && random.nextInt(100) < 15) {
+            quit();
+            return null;
+        }
+
         for (Card card : getHand()) {
             if (card.isLama() && card.canBePlayedOnTopOf(topCard)) {
                 getHand().remove(card);

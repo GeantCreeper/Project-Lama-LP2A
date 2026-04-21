@@ -7,6 +7,8 @@ public class Game {
     private Round round;
     private boolean isGameOver;
     private int roundCount;
+    private static final int MAX_ROUNDS = 8;
+    private static final int MAX_POINTS_PER_ROUND = 25;
 
     public Game(int nbBots, String name, int age) {
         this.players = new ArrayList<>();
@@ -55,6 +57,13 @@ public class Game {
         return this.roundCount;
     }
 
+    public int getMaxRounds() {
+        return MAX_ROUNDS;
+    }
+
+    public int getMaxPointsParRound() {
+        return MAX_POINTS_PER_ROUND;
+    }
 
     /* METHODS */
 
@@ -68,7 +77,7 @@ public class Game {
         this.round.start();
 
         // Check if game is over after 8 rounds
-        if (this.roundCount >= 8) {
+        if (this.roundCount >= MAX_ROUNDS) {
             this.isGameOver = true;
         }
     }
