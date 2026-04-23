@@ -13,10 +13,9 @@
 ### But du jeu
 L'objectif est de vous débarrasser de toutes vos cartes pour gagner des crédits ECTS. Le joueur avec le plus de crédits à la fin de la partie valide son année.
 
-### Le Matériel
-* **[Nombre]** cartes U.E. (Unités d'Enseignement), numérotées de 1 à 6.
-* **[Nombre]** cartes Jury.
-* **[Nombre]** jetons ECTS.
+### Le Contenu
+* **48** cartes U.E. (Unités d'Enseignement), numérotées de 1 à 6.
+* **8** cartes Jury.
 
 ### Déroulement d'un tour
 À votre tour, vous devez effectuer **une seule** des trois actions suivantes :
