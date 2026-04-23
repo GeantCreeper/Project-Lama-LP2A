@@ -37,20 +37,24 @@ La manche se termine quand un joueur vide sa main ou quand tous les joueurs ont 
 
 <table align="center">
   <tr>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/48.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/49.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/50.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/51.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/52.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/53.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/54.png" width="300"/></td>
-    <td align="center"><img src="Lama/src/main/resources/images/cards/55.png" width="300"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/48.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/49.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/50.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/51.png" width="150"/></td>
   </tr>
   <tr>
     <td align="center"><em>Jury 1</em></td>
     <td align="center"><em>Jury 2</em></td>
     <td align="center"><em>Jury 3</em></td>
     <td align="center"><em>Jury 4</em></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/52.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/53.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/54.png" width="150"/></td>
+    <td align="center"><img src="Lama/src/main/resources/images/cards/55.png" width="150"/></td>
+  </tr>
+  <tr>
     <td align="center"><em>Jury 5</em></td>
     <td align="center"><em>Jury 6</em></td>
     <td align="center"><em>Jury 7</em></td>
@@ -58,9 +62,6 @@ La manche se termine quand un joueur vide sa main ou quand tous les joueurs ont 
   </tr>
 </table>
 *[lien image du menu]*
-
-![Placeholder - Carte Jury](chemin)
-*Légende : Maquette de la carte Jury.*
 
 ![Placeholder - Plateau de jeu](chemin)
 *Légende : Aperçu d'une partie en cours.*
