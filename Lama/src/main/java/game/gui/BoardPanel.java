@@ -272,8 +272,7 @@ public class BoardPanel {
 
     private void refreshScore() {
         HumanPlayer human = getHuman();
-        int score = human.getScore();
-        scoreLabel.setText("ECTS : " + score + " pts");
+        scoreLabel.setText("ECTS : " + human.getScore() + " pts");
     }
 
 

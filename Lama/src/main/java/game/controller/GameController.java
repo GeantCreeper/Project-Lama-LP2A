@@ -12,6 +12,7 @@ public class GameController {
 
     private Game game;
     private BoardPanel view;
+    private GamePanel app; // Référence à la classe principale pour les transitions d'écran
 
     // cartes speciales necessitant un deuxieme clic du joueur
     private boolean waitingAcademicComeback = false;
@@ -20,8 +21,9 @@ public class GameController {
 
     private Player moodleTarget = null; // Stocke la cible de l'Erreur Moodle en attente
 
-    public GameController(Game game) {
+    public GameController(Game game, GamePanel app) {
         this.game = game;
+        this.app = app;
     }
 
     // Lie la vue au contrôleur
@@ -81,6 +83,9 @@ public class GameController {
 
         human.playCard(card);
         game.getRound().getDiscard().addCard(card);
+        if(!card.isLama()) {
+            human.addRoundPoints(card.getValue());
+        }
 
         boolean specialEffect = applyCardEffect(human, card, deck);
         if (specialEffect) {
@@ -113,9 +118,14 @@ public class GameController {
     private void processTurn() {
         if (!checkRoundEnd()) {
             playBots();
-            while (getHuman().isTurnSkipped() && !checkRoundEnd()) {
+            // Si l'humain est couché, continuer à faire jouer les bots jusqu'à fin de manche
+            while (getHuman().isDropout() && !checkRoundEnd()) {
+                playBots();
+            }
+            // Sinon gérer le skip de tour normal
+            while (!getHuman().isDropout() && getHuman().isTurnSkipped() && !checkRoundEnd()) {
                 getHuman().setSkipTurn(false);
-                view.showMessage("Votre passez votre tour.", "#e67e22");
+                view.showMessage("Vous passez votre tour.", "#e67e22");
                 playBots();
             }
             checkRoundEnd();
@@ -142,6 +152,9 @@ public class GameController {
                 
                 if (played != null) {
                     game.getRound().getDiscard().addCard(played);
+                    if (!played.isLama()) {
+                        bot.addRoundPoints(played.getValue());
+                    }
                     applyCardEffect(bot, played, deck); // Application de l'effet fusionné
                 } else {
                     Card drawn = bot.drawCard(deck);
@@ -159,8 +172,9 @@ public class GameController {
         boolean anyEmpty = game.getPlayers().stream().anyMatch(p -> !p.isDropout() && p.getHand().isEmpty());
 
         if (allDropped || anyEmpty) {
+            endOfRoundScoring();
             if (game.isGameOver()) {
-                view.showMessage("Partie terminée !", "#8e44ad");
+                showFinalScores();
             } else {
                 view.showMessage("Fin de manche ! Nouveau semestre.", "#8e44ad");
                 game.newRound(); // Relance une manche (re-distribue les cartes)
@@ -306,5 +320,28 @@ public class GameController {
             return null;
         }
         return validTargets.get(0); // Retourne le prochain joueur actif (ici, le premier de la liste)
-}
+    }
+
+    private void endOfRoundScoring() {
+        int maxPerRound = game.getMaxPointsParRound();
+        for (Player p : game.getPlayers()) {
+            int gained = Math.min(p.getRoundScore() + p.calculateScore(), maxPerRound);
+            p.addPoints(gained);
+            p.resetRoundScore();
+        }
+    }
+
+    private void showFinalScores() {
+        StringBuilder sb = new StringBuilder("Scores finaux :\n\n");
+        game.getPlayers().stream()
+            .sorted((a, b) -> a.getScore() - b.getScore())
+            .forEach(p -> sb.append(p.getName()).append(" : ").append(p.getScore()).append(" pts\n"));
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Fin de partie");
+        alert.setHeaderText("La partie est terminée !");
+        alert.setContentText(sb.toString());
+        alert.showAndWait();
+        app.showMenu();
+    }
 }

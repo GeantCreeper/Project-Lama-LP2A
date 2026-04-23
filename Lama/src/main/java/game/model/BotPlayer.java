@@ -20,6 +20,11 @@ public class BotPlayer extends Player {
             return null;
         }
 
+        if (getRoundScore() >= 18 && random.nextInt(100) < 15) {
+            quit();
+            return null;
+        }
+
         for (Card card : getHand()) {
             if (card.isLama() && card.canBePlayedOnTopOf(topCard)) {
                 getHand().remove(card);
@@ -42,5 +47,9 @@ public class BotPlayer extends Player {
         
         return null; // Aucune carte jouable
     }   
+
+    public static void resetBotCount() {
+        bot_count = 1;
+    }
 
 }

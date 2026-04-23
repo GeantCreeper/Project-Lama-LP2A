@@ -29,7 +29,7 @@ public class GamePanel extends Application {
 
         Game game = new Game(nbBots, playerName, 20);
         
-        GameController controller = new GameController(game);
+        GameController controller = new GameController(game, this);
         
         BoardPanel board = new BoardPanel(this, controller);
         
