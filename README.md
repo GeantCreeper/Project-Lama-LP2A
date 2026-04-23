@@ -24,6 +24,7 @@ Le jeu dure **8 manches** et les étudiants ont la possibilité de gagner jusqu'
 1. **Jouer une carte :** Poser une carte de même valeur ou d'une valeur supérieure de 1 par rapport au sommet de la pile. Sur un 6, vous pouvez poser un 6 ou une carte Jury. Sur une carte Jury, vous pouvez poser un Jury ou un 1. <br>
 2. **Piocher une carte :** Prendre la première carte de la pioche. <br>
 3. **Abandonner le semestre :** Quitter la manche en cours. Vous conservez vos cartes en main et ne jouez plus jusqu'à la fin de la manche. <br>
+
 **Chaque carte posée donne au joueur le nombre de crédits associé à sa valeur sauf les Jurys qui ne rapportent pas de points.**
 
 ### Fin de la manche
