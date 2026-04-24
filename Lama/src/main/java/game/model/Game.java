@@ -24,27 +24,27 @@ public class Game {
 
     /* GETTERS AND SETTERS */
 
-    public void setPlayers(ArrayList<Player> players) { 
-        this.players = players; 
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
     }
 
-    public ArrayList<Player> getPlayers() { 
-        return this.players; 
+    public ArrayList<Player> getPlayers() {
+        return this.players;
     }
 
-    public void setRound(Round round) { 
-        this.round = round; 
+    public void setRound(Round round) {
+        this.round = round;
     }
 
-    public Round getRound() { 
-        return this.round; 
+    public Round getRound() {
+        return this.round;
     }
 
-    public void setGameOver(boolean isGameOver) { 
-        this.isGameOver = isGameOver; 
+    public void setGameOver(boolean isGameOver) {
+        this.isGameOver = isGameOver;
     }
-    public boolean isGameOver() { 
-        return this.isGameOver; 
+    public boolean isGameOver() {
+        return this.isGameOver;
     }
 
     public void setRoundCount(int roundCount) {
@@ -58,8 +58,8 @@ public class Game {
 
     /* METHODS */
 
-    public void startGame() { 
-        newRound(); 
+    public void startGame() {
+        newRound();
     }
 
     public void newRound() {

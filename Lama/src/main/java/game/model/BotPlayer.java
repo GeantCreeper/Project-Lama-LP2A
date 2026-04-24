@@ -41,6 +41,6 @@ public class BotPlayer extends Player {
         }
         
         return null; // Aucune carte jouable
-    }   
+    }
 
 }
