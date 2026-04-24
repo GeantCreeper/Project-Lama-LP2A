@@ -46,7 +46,7 @@ public class BotPlayer extends Player {
         }
         
         return null; // Aucune carte jouable
-    }   
+    }
 
     public static void resetBotCount() {
         bot_count = 1;
