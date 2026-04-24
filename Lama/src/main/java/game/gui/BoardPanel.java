@@ -27,7 +27,7 @@ public class BoardPanel {
     private GameController controller;
     private VBox view;
 
-    // Zone d'affichage dynamique
+    // dynamic UI elements that need to be updated
     private HBox humanCardsBox;
     private ImageView topCardImageView;
     private Label deckLabel;
@@ -35,20 +35,21 @@ public class BoardPanel {
     private VBox botsStatusBox;
     private Label scoreLabel;
 
-    // Gestionnaire d'images de cartes
+    // image manager to load and cache card images
     private final CardImageManager imageManager = new CardImageManager();
 
+    // Constructor
     public BoardPanel(GamePanel app, GameController controller) {
         this.app = app;
         this.controller = controller;
         buildUI();
     }
 
+    /*
+    buildUI is a helper method to construct the user interface for the game board.
+    return void */
     private void buildUI() {
-        // ... (Garde EXACTEMENT le même code buildUI que tu avais, 
-        // avec juste une modification sur les actions des boutons) ...
-        
-        /* En-tête */
+        /* header */
         Label title = new Label("Mention F");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 
@@ -73,7 +74,7 @@ public class BoardPanel {
         botsTitle.setStyle("-fx-text-fill: white;");
         botsStatusBox.getChildren().add(botsTitle);
 
-        /* Zone du mid : pioche et défausse */
+        /* Deck and discard pile Zone */
         deckLabel = new Label();
         deckLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         deckLabel.setAlignment(Pos.CENTER);
@@ -113,12 +114,12 @@ public class BoardPanel {
         topCardImageView.fitWidthProperty().bind(discardPane.widthProperty().multiply(0.9));
         topCardImageView.fitHeightProperty().bind(discardPane.heightProperty().multiply(0.9));
 
-        /* Message d'info */
+        /* info messages */
         messageLabel = new Label("À votre tour !");
         messageLabel.setFont(Font.font("Arial", FontPosture.ITALIC, 14));
         messageLabel.setStyle("-fx-text-fill: #27ae60;");
 
-        /* Boutons d'action */
+        /* Action buttons */
         Button drawBtn = new Button("Piocher");
         Button quitBtn = new Button("Abandonner le semestre");
         Button menuBtn = new Button("Menu");
@@ -131,7 +132,7 @@ public class BoardPanel {
         quitBtn.setStyle("-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 6;");
         menuBtn.setStyle("-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-background-radius: 6;");
 
-        // ICI : On délègue les clics au contrôleur
+        // click handlers that delegate to the controller
         drawBtn.setOnAction(e -> controller.drawCard());
         quitBtn.setOnAction(e -> controller.quitSemester());
         menuBtn.setOnAction(e -> app.showMenu());
@@ -139,7 +140,7 @@ public class BoardPanel {
         HBox actionBox = new HBox(15, drawBtn, quitBtn, menuBtn);
         actionBox.setAlignment(Pos.CENTER);
 
-        /* Main du joueur */
+        /* Player's Hand */
         Label handTitle = new Label("Votre main :");
         handTitle.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 
@@ -156,7 +157,6 @@ public class BoardPanel {
         scrollHand.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollHand.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollHand.setStyle("-fx-background-color: transparent; -fx-background: #ecf0f1;");
-        //scrollHand.setMinHeight(340);   // supprimer la hauteur fixe
         humanCardsBox.prefWidthProperty().bind(scrollHand.widthProperty());
 
         // Removed the listener that was preventing the UI from growing back
@@ -167,7 +167,7 @@ public class BoardPanel {
         handBox.setPadding(new Insets(10));
         handBox.setStyle("-fx-background-color: #ecf0f1; -fx-background-radius: 8;");
 
-        /* Centre */
+        /* center */
         VBox centerBox = new VBox(20, pileBox, messageLabel, actionBox);
         centerBox.setAlignment(Pos.CENTER);
         centerBox.setPadding(new Insets(20));
@@ -186,13 +186,13 @@ public class BoardPanel {
     }
 
 
-    /* Méthode appelée par le contrôleur pour afficher un texte */
+    /* Methode called by the controller to display a message */
     public void showMessage(String text, String colorHex) {
         messageLabel.setText(text);
         messageLabel.setStyle("-fx-text-fill: " + colorHex + ";");
     }
 
-    /* Rafraîchissement de l'UI */
+    /* UI refresh methods */
 
     public void refresh() {
         refreshTopCard();
@@ -247,7 +247,7 @@ public class BoardPanel {
                 cardBtn.setStyle("-fx-background-color: transparent; -fx-border-color: #95a5a6; -fx-border-width: 1; -fx-border-radius: 8; -fx-opacity: 0.7;");
             }
 
-            // ICI : On délègue le clic au contrôleur
+            // click handler that delegates to the controller to play the card
             cardBtn.setOnAction(e -> controller.playCard(card));
             humanCardsBox.getChildren().add(cardBtn);
         }
@@ -275,12 +275,13 @@ public class BoardPanel {
     }
 
 
-    /* Utilitaires */
+    /* Utility Methods */
 
     private HumanPlayer getHuman() {
         return (HumanPlayer) controller.getGame().getPlayers().get(0);
     }
 
+    // Helper method to generate a consistent style string for card display
     private String cardStyle(String bg, String fg) {
         return "-fx-background-color: " + bg + "; " +
                "-fx-text-fill: " + fg + "; " +

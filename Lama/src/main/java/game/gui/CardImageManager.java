@@ -1,24 +1,30 @@
 package game.gui;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
 import game.model.Card;
 import javafx.scene.image.Image;
 
-import java.util.*;
-
 public class CardImageManager {
 
-    // Valeur 1->6 : 8 variantes chacune (indices 0..47), Valeurs 7->14 (lamas) : 1 variante chacune (indices 48..55)
+    // Value 1->6 : 8 variants each (indices 0..47), Values 7->14 (lamas) : 1 variant each (indices 48..55)
     private static final int[] VALUE_START = {0, 0, 8, 16, 24, 32, 40, 48, 49, 50, 51, 52, 53, 54, 55};
     private static final int[] VALUE_COUNT = {0, 8, 8, 8, 8, 8, 8, 1, 1, 1, 1, 1, 1, 1, 1};
 
-    // Mapping carte -> index image assigné (stabilité visuelle entre les refresh)
+    // Mapping card -> image index assigned (visual stability between refreshes)
     private final Map<Card, Integer> cardImageIndex = new IdentityHashMap<>();
 
     private final Random random = new Random();
 
     /**
-     * Synchronise le mapping interne avec la main courante du joueur.
-     * Supprime les cartes qui ne sont plus dans la main.
+     * Synchronise the internal mapping with the current hand of the player.
+     * Removes cards that are no longer in the hand.
      */
     public void syncWith(List<Card> hand) {
         Map<Card, Boolean> handSet = new IdentityHashMap<>();
@@ -27,8 +33,8 @@ public class CardImageManager {
     }
 
     /**
-     * Retourne l'index image assigné à une carte de la main.
-     * Si la carte n'en a pas encore, en choisit un non utilisé par les autres cartes.
+     * Returns the image index assigned to a card in the hand.
+     * If the card doesn't have one yet, it picks an unused index from the available variants.
      */
     public int getOrAssignIndex(Card card, List<Card> hand) {
         if (!cardImageIndex.containsKey(card)) {
@@ -40,7 +46,7 @@ public class CardImageManager {
     }
 
     /**
-     * Retourne un index aléatoire pour la valeur de la carte (utilisé pour la défausse).
+     * Returns a random index for the value of the card (used for the discard pile).
      */
     public int randomIndexFor(Card card) {
         int key = valueKey(card);
@@ -48,8 +54,8 @@ public class CardImageManager {
     }
 
     /**
-     * Charge l'image resources/images/cards/{index}.png depuis le classpath.
-     * Retourne une image transparente 1x1 en fallback si le fichier est absent.
+     * Loads the image resources/images/cards/{index}.png from the classpath.
+     * Returns a 1x1 transparent image as a fallback if the file is absent.
      */
     public Image loadImageByIndex(int index) {
         String path = "/images/cards/" + index + ".png";
@@ -57,13 +63,13 @@ public class CardImageManager {
         if (url != null) {
             return new Image(url.toExternalForm());
         }
-        // Fallback : pixel transparent
+        // Fallback : transparent 1x1 PNG (should not happen if resources are correctly included)
         return new Image("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=");
     }
 
     /**
-     * Choisit un index image non encore utilisé dans la main pour cette carte.
-     * Si tous les indices de la valeur sont pris, retourne un index quelconque de la valeur.
+     * Chooses a unique image index for the card in the hand.
+     * If all indices for the value are taken, returns any index for the value.
      */
     private int pickUniqueIndex(Card card, Set<Integer> usedIndices) {
         int key = valueKey(card);
@@ -80,12 +86,12 @@ public class CardImageManager {
         if (!available.isEmpty()) {
             return available.get(random.nextInt(available.size()));
         }
-        // Fallback : tous pris (main > nb variantes), doublon accepté
+        // Fallback : all taken (hand > number of variants), duplicate allowed
         return start + random.nextInt(count);
     }
 
     /**
-     * Convertit la valeur d'une carte en clé de tableau (1-14).
+     * Converts the value of a card into a table key (1-14).
      */
     private int valueKey(Card card) {
         return card.getValue();

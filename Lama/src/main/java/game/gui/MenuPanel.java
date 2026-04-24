@@ -2,22 +2,35 @@ package game.gui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
+/* MenuPanel represents the main menu of the game */
 public class MenuPanel {
 
     private GamePanel app;
     private VBox view;
 
+    // Constructor
     public MenuPanel(GamePanel app) {
         this.app = app;
         buildUI();
     }
 
+    /* Build the user interface for the menu 
+    returns void */
     private void buildUI() {
-        // Titre
+        // Title and subtitle
         Label title = new Label("Mention F");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 48));
 
@@ -26,13 +39,13 @@ public class MenuPanel {
         subtitle.setWrapText(true);
         subtitle.setTextAlignment(TextAlignment.CENTER);
 
-        // Champ nom
+        // Input for player name
         Label nameLabel = new Label("Votre pseudo :");
         TextField nameField = new TextField();
         nameField.setPromptText("Ex: Nikoslaï");
         nameField.setMaxWidth(250);
 
-        // Choix nombre de bots
+        // Options for number of bots
         Label botsLabel = new Label("Nombre de bots :");
         ToggleGroup botsGroup = new ToggleGroup();
         RadioButton bot1 = new RadioButton("1 bot");
@@ -44,11 +57,11 @@ public class MenuPanel {
         HBox botsBox = new HBox(20, bot1, bot3);
         botsBox.setAlignment(Pos.CENTER);
 
-        // Bouton jouer
+        // Play button
         Button playBtn = new Button("Commencer la partie");
         playBtn.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
-        // Message d'erreur
+        // Error label for input validation
         Label errorLabel = new Label("");
         errorLabel.setStyle("-fx-text-fill: red;");
 
@@ -75,6 +88,7 @@ public class MenuPanel {
         );
     }
 
+    // Getter for the view
     public VBox getView() {
         return view;
     }

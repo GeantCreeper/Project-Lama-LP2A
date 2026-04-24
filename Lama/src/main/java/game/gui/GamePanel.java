@@ -6,10 +6,13 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/* GamePanel takes care of the main game window */
 public class GamePanel extends Application {
 
     private Stage primaryStage;
 
+    /* open the game window
+    returns void */
     @Override
     public void start(Stage stage) {
         this.primaryStage = stage;
@@ -19,12 +22,17 @@ public class GamePanel extends Application {
         stage.show();
     }
 
+    /* show the main menu
+     * returns void
+     */
     public void showMenu() {
         MenuPanel menu = new MenuPanel(this);
         Scene scene = new Scene(menu.getView(), 800, 600);
         primaryStage.setScene(scene);
     }
 
+    /* start a new game with the given player name and number of bots
+    returns void */ 
     public void startGame(String playerName, int nbBots) {
 
         Game game = new Game(nbBots, playerName, 20);
@@ -40,6 +48,7 @@ public class GamePanel extends Application {
         primaryStage.setMaximized(true);
     }
 
+    // for testing purposes only
     public static void main(String[] args) {
         launch(args);
     }
