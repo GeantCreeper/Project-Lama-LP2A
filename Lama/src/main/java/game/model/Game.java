@@ -10,6 +10,7 @@ public class Game {
     private static final int MAX_ROUNDS = 8;
     private static final int MAX_POINTS_PER_ROUND = 30;
 
+    // CONSTRUCTORS
     public Game(int nbBots, String name, int age) {
         this.players = new ArrayList<>();
         this.players.add(new HumanPlayer(name, age));
@@ -21,7 +22,7 @@ public class Game {
 
         this.round = new Round(this.players); // passe les joueurs
         this.isGameOver = false;
-        this.roundCount = 0;    
+        this.roundCount = 0;
     }
 
 
@@ -68,6 +69,7 @@ public class Game {
 
     /* METHODS */
 
+    // Starts a new round of the game, increments the round count, and checks if the game is over after 8 rounds
     public void newRound() {
         this.roundCount++;
         this.round = new Round(this.players); // recree un Round avec les joueurs
