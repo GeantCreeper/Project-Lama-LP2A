@@ -89,22 +89,22 @@ public class BoardPanel {
 
         StackPane discardPane = new StackPane(topCardImageView);
         discardPane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        discardPane.setPrefHeight(200);
-        discardPane.setPrefWidth(500);
+        discardPane.setPrefHeight(350);
+        discardPane.setPrefWidth(250);
         discardPane.setStyle(cardStyle("#e74c3c", "white"));
 
         VBox deckBox = new VBox(5, new Label(LanguageController.getString("deck.label")), deckLabel);
         deckBox.setAlignment(Pos.CENTER);
-        deckBox.setPrefWidth(167);
-        deckBox.setMaxWidth(167);
+        deckBox.setPrefWidth(250);
+        deckBox.setMaxWidth(250);
         deckBox.setMaxHeight(Double.MAX_VALUE);
         VBox.setVgrow(deckLabel, Priority.ALWAYS);
         ((Label) deckBox.getChildren().get(0)).setStyle("-fx-text-fill: #7f8c8d;");
 
         VBox discardBox = new VBox(5, new Label(LanguageController.getString("discard.label")), discardPane);
         discardBox.setAlignment(Pos.CENTER);
-        discardBox.setMaxWidth(167);
-        discardBox.setPrefWidth(167);
+        discardBox.setMaxWidth(250);
+        discardBox.setPrefWidth(250);
         VBox.setVgrow(discardPane, Priority.ALWAYS);
         ((Label) discardBox.getChildren().get(0)).setStyle("-fx-text-fill: #7f8c8d;");
 
@@ -150,7 +150,7 @@ public class BoardPanel {
         humanCardsBox.setAlignment(Pos.CENTER_LEFT);
         humanCardsBox.setPadding(new Insets(10));
         humanCardsBox.setMaxHeight(Double.MAX_VALUE);
-        humanCardsBox.setPrefHeight(250);
+        humanCardsBox.setPrefHeight(350);
         HBox.setHgrow(discardPane, Priority.ALWAYS);
 
         ScrollPane scrollHand = new ScrollPane(humanCardsBox);
@@ -232,14 +232,14 @@ public class BoardPanel {
 
             ImageView iv = new ImageView(img);
             iv.setSmooth(true);
-            iv.fitHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.9));
-            iv.fitWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.65));
+            iv.fitHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.85));
+            iv.fitWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.7));
 
             Button cardBtn = new Button("", iv);
             cardBtn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            cardBtn.setMinSize(167, 0);
-            cardBtn.prefHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.9));
-            cardBtn.prefWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.65));
+            cardBtn.setMinSize(200, 0);
+            cardBtn.prefHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.85));
+            cardBtn.prefWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.7));
             cardBtn.setPadding(Insets.EMPTY);
 
             boolean playable = top != null && card.canBePlayedOnTopOf(top);

@@ -42,10 +42,10 @@ public class GamePanel extends Application {
         BoardPanel board = new BoardPanel(this, controller);
         
         controller.setView(board);
-        controller.start();
         Scene scene = new Scene(board.getView(), 1920, 1080);
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
+        javafx.application.Platform.runLater(() -> controller.start());
     }
 
     // for testing purposes only
