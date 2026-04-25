@@ -79,7 +79,7 @@ public class MenuPanel {
             app.startGame(name, nbBots);
         });
 
-        // Language toggle button (shows the OTHER language as the button label)
+        // Language toggle button
         Button langBtn = new Button(LanguageController.getCurrentLocale().equals(Locale.FRENCH) ? "English" : "Français");
         langBtn.setFont(Font.font("Arial", 12));
         langBtn.setStyle("-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-background-radius: 6;");

@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-
 import game.model.Card;
 import javafx.scene.image.Image;
+import game.controller.LanguageController;
 
 public class CardImageManager {
 
@@ -54,12 +54,12 @@ public class CardImageManager {
     }
 
     /**
-     * Loads the image resources/images/cards/{index}.png from the classpath.
+     * Loads the image resources/images/french_cards/{index}.png or the resources/images/english_cards/{index}.png depending on the current locale.
      * Returns a 1x1 transparent image as a fallback if the file is absent.
      */
     public Image loadImageByIndex(int index) {
-        String path = "/images/cards/" + index + ".png";
-        var url = getClass().getResource(path);
+        String path = LanguageController.getString("card.image.path") + index + ".png";
+        var url = getClass().getClassLoader().getResource(path.startsWith("/") ? path.substring(1) : path);
         if (url != null) {
             return new Image(url.toExternalForm());
         }
