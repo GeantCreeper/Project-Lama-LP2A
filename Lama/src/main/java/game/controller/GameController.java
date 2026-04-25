@@ -102,6 +102,7 @@ public class GameController {
         game.getRound().getDiscard().addCard(card);
         if(!card.isLama()) {
             human.addRoundPoints(card.getValue());
+            human.addPoints(card.getValue());
         }
 
         boolean specialEffect = applyCardEffect(human, card, deck);
@@ -186,6 +187,7 @@ public class GameController {
                     game.getRound().getDiscard().addCard(played);
                     if (!played.isLama()) {
                         bot.addRoundPoints(played.getValue());
+                        bot.addPoints(played.getValue());
                     }
                     applyCardEffect(bot, played, deck); // apply the card effect (some cards may cause the bot to play additional cards or skip turns, etc.)
                 } else { // if the bot cannot play a card, it draws one
@@ -376,15 +378,10 @@ public class GameController {
     }
 
     /*
-    endOfRoundScoring is a helper method to calculate and update the scores at the end of each round.
+    endOfRoundScoring is a helper method to update the scores at the end of each round.
     return void */
     private void endOfRoundScoring() {
-        int maxPerRound = game.getMaxPointsParRound();
-
-        // Each player gains points equal to their round score plus the points from their hand, up to a maximum defined by the game rules
         for (Player p : game.getPlayers()) {
-            int gained = Math.min(p.getRoundScore() + p.calculateScore(), maxPerRound);
-            p.addPoints(gained);
             p.resetRoundScore();
         }
     }
