@@ -159,7 +159,6 @@ public class BoardPanel {
         scrollHand.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollHand.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollHand.setStyle("-fx-background-color: transparent; -fx-background: #ecf0f1;");
-        humanCardsBox.prefWidthProperty().bind(scrollHand.widthProperty());
 
         // Removed the listener that was preventing the UI from growing back
         VBox.setVgrow(scrollHand, Priority.ALWAYS);
@@ -232,14 +231,16 @@ public class BoardPanel {
 
             ImageView iv = new ImageView(img);
             iv.setSmooth(true);
+            iv.setPreserveRatio(true);
             iv.fitHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.85));
-            iv.fitWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.7));
 
             Button cardBtn = new Button("", iv);
-            cardBtn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            cardBtn.setMinSize(200, 0);
             cardBtn.prefHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.85));
-            cardBtn.prefWidthProperty().bind(humanCardsBox.heightProperty().multiply(0.7));
+            cardBtn.prefHeightProperty().bind(humanCardsBox.heightProperty().multiply(0.85));
+            // prevent buttons from stretching infinitely on resize by using -1 for width and height
+            cardBtn.setPrefWidth(-1);
+            cardBtn.setMinSize(-1, -1); 
+            cardBtn.setMaxSize(-1, -1);
             cardBtn.setPadding(Insets.EMPTY);
 
             boolean playable = top != null && card.canBePlayedOnTopOf(top);
@@ -249,7 +250,6 @@ public class BoardPanel {
                 cardBtn.setStyle("-fx-background-color: transparent; -fx-border-color: #95a5a6; -fx-border-width: 1; -fx-border-radius: 8; -fx-opacity: 0.7;");
             }
 
-            // click handler that delegates to the controller to play the card
             cardBtn.setOnAction(e -> controller.playCard(card));
             humanCardsBox.getChildren().add(cardBtn);
         }
