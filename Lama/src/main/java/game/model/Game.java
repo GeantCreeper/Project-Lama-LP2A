@@ -15,12 +15,12 @@ public class Game {
         this.players = new ArrayList<>();
         this.players.add(new HumanPlayer(name, age));
 
-        BotPlayer.resetBotCount(); // reset le compteur de bots pour les noms
+        BotPlayer.resetBotCount(); //reset the bot counter for names
         for (int i = 0; i < nbBots; i++) {
             this.players.add(new BotPlayer());
         }
 
-        this.round = new Round(this.players); // passe les joueurs
+        this.round = new Round(this.players); //create a Round with the players
         this.isGameOver = false;
         this.roundCount = 0;
     }
